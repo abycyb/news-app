@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .chart_canvas {
+        width: 500px;
+        height: 500px;
+        }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="chart_canvas">
+        <canvas id="chart" ></canvas>
+    </div>
+
+    <script>
+        var chartData = {{ data|safe }};
+        var time = chartData.map(row => row[0]);
+        var open = chartData.map(row => parseFloat(row[1]));
+        var high = chartData.map(row => parseFloat(row[2]));
+        var low = chartData.map(row => parseFloat(row[3]));
+        var close = chartData.map(row => parseFloat(row[4]));
+        var volume = chartData.map(row => parseFloat(row[5]));
+    
+        var ctx = document.getElementById('chart').getContext('2d');
+    
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: time,
+                datasets: [
+                    {
+                        label: 'Open',
+                        data: open,
+                        borderColor: 'red',
+                        pointRadius: 0, // Set pointRadius to 0 to remove circles
+                        pointHoverRadius: 1, // Set pointHoverRadius to 0 to remove circles on hover
+                
+                        fill: false,
+                    },
+                    {
+                        label: 'High',
+                        data: high,
+                        borderColor: 'green',
+                        pointRadius: 0, // Set pointRadius to 0 to remove circles
+                        pointHoverRadius: 1, // Set pointHoverRadius to 0 to remove circles on hover
+                
+                        fill: false,
+                    },
+                    // Add more datasets for other columns if needed
+                ],
+            },
+            options: {
+            },
+
+        });
+    </script>
+    
+</body>
+</html>

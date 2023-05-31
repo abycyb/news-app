@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+
+<title>NewsFeed | Pages | Single Page</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+  
+  body {
+    display: grid;
+    place-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #9C27B0
+  }
+
+  .view-more-btn {
+  margin-top:10px;  
+  background-color: #93a1b1;
+  color: #fff;
+  border: transparent;
+  padding:5px;
+  border-radius: 5px;
+  font-size: 10px;
+  cursor: pointer;
+  }
+
+  .view-more-btn:hover {
+    background-color: #57b18b;
+  }
+
+  .card {
+      position: relative;
+      display: flex;
+      padding:20px;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 1px solid #d2d2dc;
+      border-radius: 11px;
+      -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+      box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+  }
+
+  .media img{      
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      object-position: top;
+  }
+
+  .user_com_img{
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      object-position: top;
+  }
+
+  .reply a {    
+      text-decoration: none;
+  }
+
+</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" >
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/font.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/li-scroller.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.fancybox.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/theme.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+<!--[if lt IE 9]>
+<script src="../assets/js/html5shiv.min.js"></script>
+<script src="../assets/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="preloader">
+  <div id="status">&nbsp;</div>
+</div>
+
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+
+
+<div class="row">
+
+  <div class="col-2">   
+
+  </div>
+
+  <div class="col-8">
+    <div class="container-fluid">
+      <header id="header">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="header_top">
+              <div class="header_top_left">
+                <ul class="top_nav">
+                  <li><a href="../index.html">Home</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+              <div class="header_top_right">
+                <p>Friday, December 05, 2045</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="header_bottom">
+              <div class="logo_area"><a href="../index.html" class="logo"><img src="{% static 'images/logo.jpg' %}" alt=""></a></div>
+            </div>
+          </div>
+        </div>
+      </header>
+    
+      <section id="newsSection">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="latest_newsarea"> <span>Latest News</span>
+              <ul id="ticker01" class="news_sticker">
+                {% for i in popular %}
+                {% if forloop.counter <= 10 %}
+                <li><a href="#"><img src="{{ i.image_url }}" alt="">{{i.title}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+              <div class="social_area">
+                <ul class="social_nav">
+                  <li class="facebook"><a href="#"></a></li>
+                  <li class="twitter"><a href="#"></a></li>
+                  <li class="flickr"><a href="#"></a></li>
+                  <li class="pinterest"><a href="#"></a></li>
+                  <li class="googleplus"><a href="#"></a></li>
+                  <li class="vimeo"><a href="#"></a></li>
+                  <li class="youtube"><a href="#"></a></li>
+                  <li class="mail"><a href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contentSection">
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="left_content">
+              <div class="single_page">
+                <ol class="breadcrumb">
+                  <li><a href="../index.html">Home</a></li>
+                  <li><a href="#">Technology</a></li>
+                  <li class="active">Mobile</li>
+                </ol>
+                <h1>{{response.title}}</h1>
+                <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>{{i.user.user.username}}</a> <span><i class="fa fa-calendar"></i>{{i.created_at}}</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
+                <div class="single_page_content"> <img class="img-center" src="{{ response.image_url }}" alt="">
+                  <p>{{ response.summary}}</p>
+                  <blockquote> Donec volutpat nibh sit amet libero ornare non laoreet arcu luctus. Donec id arcu quis mauris euismod placerat sit amet ut metus. Sed imperdiet fringilla sem eget euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque adipiscing, neque ut pulvinar tincidunt, est sem euismod odio, eu ullamcorper turpis nisl sit amet velit. </blockquote>
+                  
+                  <ul>
+                    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+                    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+                    <li>Nullam vitae nibh odio, non scelerisque nibh</li>
+                  </ul>
+                  <h3>This is h3 title</h3>
+                  <h4>This is h4 title</h4>
+                  <button class="btn default-btn">Default</button>
+                  <button class="btn btn-green">Green Button</button>
+                  <button class="btn btn-theme">Theme Button</button>
+                </div>
+                <div class="social_link">
+                  <ul class="sociallink_nav">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                  </ul>
+                </div>
+    
+                <div class="related_post">
+                  <h2>Related Post <i class="fa fa-thumbs-o-up"></i></h2>
+                  <ul class="spost_nav wow fadeInDown animated">
+                    {% for i in popular %}
+                    {% if forloop.counter <= 10 %}
+
+                    <li>
+                      <div class="media"> <a class="media-left" href=""> <img src="{{i.image_url}}" alt=""> </a>
+                        <div class="media-body"> <a class="catg_title" href=""> {{i.title}}</a> </div>
+                      </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>    
+          
+          <nav class="nav-slit"> <a class="prev" href="#"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
+            <div>
+              <h3>City Lights</h3>
+              <img src="{% static 'images/post_img1.jpg' %}" alt=""/> </div>
+            </a> <a class="next" href="#"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+            <div>
+              <h3>Street Hills</h3>
+              <img src="{% static 'images/post_img1.jpg' %}" alt=""/> </div>
+            </a> 
+          </nav>  
+          
+          
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <aside class="right_content">
+              <div class="single_sidebar">
+                <h2><span>Popular Post</span></h2>
+                <ul class="spost_nav">
+                  {% for i in popular %}
+                  {% if forloop.counter <= 10 %}
+
+                  <li>
+                    <div class="media wow fadeInDown"> <a href="{% url 'newsview' i.id %}" class="media-left"> <img alt="" src="{{ i.image_url }}"> </a>
+                      <div class="media-body"> <a href="{% url 'newsview' i.id %}" class="catg_title">{{i.title}}</a> </div>
+                    </div>
+                  </li>
+                  {% endif %}
+                  {% endfor %}              
+                </ul>
+              </div>
+              <div class="single_sidebar">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
+                  <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
+                  <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="category">
+                    <ul>
+                      <li class="cat-item"><a href="#">Sports</a></li>
+                      <li class="cat-item"><a href="#">Fashion</a></li>
+                      <li class="cat-item"><a href="#">Business</a></li>
+                      <li class="cat-item"><a href="#">Technology</a></li>
+                      <li class="cat-item"><a href="#">Games</a></li>
+                      <li class="cat-item"><a href="#">Life &amp; Style</a></li>
+                      <li class="cat-item"><a href="#">Photography</a></li>
+                    </ul>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="video">
+                    <div class="vide_area">
+                      <iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="comments">
+                    <ul class="spost_nav">
+                      <li>
+                        <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="../images/post_img1.jpg"> </a>
+                          <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="../images/post_img2.jpg"> </a>
+                          <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="../images/post_img1.jpg"> </a>
+                          <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="media wow fadeInDown"> <a href="single_page.html" class="media-left"> <img alt="" src="../images/post_img2.jpg"> </a>
+                          <div class="media-body"> <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="single_sidebar wow fadeInDown">
+                <h2><span>Sponsor</span></h2>
+                <a class="sideAdd" href="#"><img src="../images/add_img.jpg" alt=""></a> </div>
+              <div class="single_sidebar wow fadeInDown">
+                <h2><span>Category Archive</span></h2>
+                <select class="catgArchive">
+                  <option>Select Category</option>
+                  <option>Life styles</option>
+                  <option>Sports</option>
+                  <option>Technology</option>
+                  <option>Treads</option>
+                </select>
+              </div>
+              <div class="single_sidebar wow fadeInDown">
+                <h2><span>Links</span></h2>
+                <ul>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Rss Feed</a></li>
+                  <li><a href="#">Login</a></li>
+                  <li><a href="#">Life &amp; Style</a></li>
+                </ul>
+              </div>
+            </aside>        
+          </div>
+        </div>
+    
+        <div class="col-12" style="display:flex;margin-bottom:50px">
+          <div class="container mb-5 mt-5">			  
+            <div class="card">
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="text-center mb-5">Comment section</h3>
+
+                    <form id="comment_form" enctype="multipart/form-data" action="{% url 'commentview' %}" method="post">{% csrf_token %}                            
+                      
+                      <div class="panel-body ">   
+                        <input type="hidden" class="form-control" name="news_id" rows="2" value="{% for i in filter %}{{ i.pk}}{% endfor %}"></input>
+                        <div class="row">
+                          <div class="col-1">
+                            <img class="mr-3 rounded-circle user_com_img"  alt="Bootstrap Media Preview" src="{{user.image.url }}"/>
+                          </div>                     
+                          <div class="col pt-2">
+                            <input class="form-control input_comment" name="input_comment" rows="2" placeholder="What are you thinking?"></input>
+                            <input type="file" class="btn btn-trans btn-icon fa fa-video-camera add-tooltip comment_file" name="file">
+                            <div class="mar-top clearfix">
+                              <button class="btn btn-sm btn-primary pull-right comment_submit" type="submit" onclick="uploadFile()"><i class="fa fa-pencil fa-fw"></i> Share</button>
+                            </div>
+                          </div>           
+                        </div>
+                      </div>
+
+                    </form>
+
+                    {% for i in comment %}
+                    <div class="row">
+
+                      <div class="col-1">
+                        <div class="comment-vote" id="vote-arrows">
+                          <button aria-label="upvote" class="comment" aria-pressed="false" style="border:none;background-color:transparent" value="up" >
+                            <span class="">
+                              <i class="fa-solid fa-square-caret-down fa-rotate-180"></i>
+                              </span>
+                          </button>
+                          <div class="vote-for-comment update-{{i.pk}}" data-id="{{i.pk}} "style="color:#1A1A1B;padding-left:15%;font-size:10px">{{i.comment_votes}}</div>
+                          <button aria-label="downvote" class="comment" aria-pressed="false" style="border:none;background-color:transparent;" value="down">
+                            <span class="">
+                              <i class="fa-solid fa-square-caret-down" ></i>            
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="col-11 md-12 mb-3">
+                        <div class="media">
+                          <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="{{i.user.image.url}}" />
+                          
+                          <div class="media-body">
+                            <div class="row">
+                              <div class="col-8 d-flex">
+                                <h5>{{i.user}} <span style="font-variant: all-small-caps;">-{{i.created_at}}</span>    </h5>
+                                                
+                              </div>                          
+                              <div class="col-4">
+                                <div class="pull-right reply">                          
+                                  
+                                  <i class="fa-solid fa-thumbtack" ></i>                         
+                                </div>                          
+                              </div>
+                            </div>		
+                                                   
+                              {{i}}<br>
+                              {% if i.image %}
+                                {% if i.file_extension == ".mp4" %}
+                                    <video class="" style="height:150px;width:200px" controls>
+                                        <source src="{{ i.image.url }}" type="video/mp4">
+                                    </video>
+                                {% else %}
+                                    <img class="" style="height:150px;width:200px" alt="Bootstrap Media Another Preview" src="{{ i.image.url }}" /><br>
+                                {% endif %}
+                              {% endif %}
+                              <div class="content-wrapper" style="display: none;">
+                                
+                                
+                                <div class="col">
+                                  <div class="reply">     
+                                    <form id="sub_comment_form" style="display: none;" enctype="multipart/form-data" action="{% url 'subcommentaddview' %}" method="post">{% csrf_token %}                            
+                      
+                                      <div class="panel-body">   
+                                        <input type="hidden" class="form-control" name="comm_id" rows="2" value="{{ i.pk}}"></input>
+                                        <div class="row">
+                                          <div class="col-1">
+                                            <img class="mr-3 rounded-circle user_com_img"  alt="Bootstrap Media Preview" src="{{user.image.url }}"/>
+                                          </div>                     
+                                          <div class="col pt-2">
+                                            <input class="form-control input_comment" name="input_comment" rows="2" placeholder="What are you thinking?"></input>
+                                            <input type="file" class="btn btn-trans btn-icon fa fa-video-camera add-tooltip comment_file" name="file">
+                                            <div class="mar-top clearfix">
+                                              <button class="btn btn-sm btn-primary pull-right comment_submit" type="submit" onclick="uploadFile()"><i class="fa fa-pencil fa-fw"></i> Share</button>
+                                            </div>
+                                          </div>           
+                                        </div>
+                                      </div>
+                
+                                    </form>                         
+                                    <a  class="reply-link-btn" style="cursor: pointer;"><span><i class="fa fa-reply reply-main-comment"></i></span>reply</a> &nbsp;&nbsp;&nbsp;
+                                    <i class="fa-sharp fa-solid fa-language fa-xl"></i>                       
+                                  </div>                          
+                                </div>
+
+                                {% for j in subcomment %}
+                                {% if j.comment.id == i.id %}
+                                <div class="media mt-4">
+                                    <a class="pr-3" href="#"><img class="rounded-circle" alt="Bootstrap Media Another Preview" src="{{j.user.image.url}}" /></a>
+                                    <div class="media-body">
+                                      <div class="row">
+                                        <div class="col-12 d-flex">
+                                          <h5>{{ j.user }}<span style="font-variant: all-small-caps;">- {{j.created_at}}</span> </h5>
+                                          
+                                        </div>
+                                      </div>   
+                                    {{j}}<br>                                      
+                                    {% if j.image %}
+                                      {% if j.file_extension == ".mp4" %}
+                                          <video class="" style="height:150px;width:200px" controls>
+                                              <source src="{{ j.image.url }}" type="video/mp4">
+                                          </video>
+                                      {% else %}
+                                          <img class="" style="height:150px;width:200px" alt="Bootstrap Media Another Preview" src="{{ j.image.url }}" /><br>
+                                      {% endif %}
+                                    {% endif %}
+                                  </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                              </div>  <br>
+                              <a class="view-more-btn">View More</a>
+                          </div>
+                        </div>
+                      </div>       
+
+                    </div>      
+                    {% endfor %}           
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+                  
+    </div>
+  </div>
+  
+    <div class="col-2">
+        <div class="" id="vote-arrows" style="width:40px;margin-top: 100px;position:fixed">
+          <button type="submit" class="vote" name="vote" value="up" style="border:none;background-color: transparent">
+            <span class="">
+              <i class="fa-solid fa-square-caret-down fa-rotate-180" style="color: #bb2a2a;font-size:100px;"></i>
+              <p>UPVOTE</p>
+            </span>
+          </button>
+          
+          <div class="votes" data-id="{{response.id}}" style="color:#1A1A1B;font-size:70px;margin-left:50%;">{% for i in filter %}{{ i.int_user_num }}{% endfor %}</div>
+          
+          <button type="submit" class="vote" name="vote" value="down" style="border:none;background-color: transparent">
+            <span class="">
+              <p>DOWNVOTE</p>
+              <i class="fa-solid fa-square-caret-down" style="color: #bb2a2a;font-size: 100px"></i>            
+            </span>
+          </button>
+        </div>
+    </div>
+
+</div>
+
+<footer id="footer">
+  <div class="footer_top">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="footer_widget wow fadeInLeftBig">
+          <h2>Flickr Images</h2>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="footer_widget wow fadeInDown">
+          <h2>Tag</h2>
+          <ul class="tag_nav">
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Technology</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="footer_widget wow fadeInRightBig">
+          <h2>Contact</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <address>
+          Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'assets/js/jquery.min.js' %}"></script> 
+<script src="{% static 'assets/js/wow.min.js' %}"></script> 
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script> 
+<script src="{% static 'assets/js/slick.min.js' %}"></script> 
+<script src="{% static 'assets/js/jquery.li-scroller.1.0.js' %}"></script> 
+<script src="{% static 'assets/js/jquery.newsTicker.min.js' %}"></script> 
+<script src="{% static 'assets/js/jquery.fancybox.pack.js' %}"></script> 
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.vote').click(function() {
+      var vote = $(this).val();
+      var id = $(this).siblings('.votes').data('id');
+      
+      console.log(id);
+      const data = {
+          vote : vote ,
+          news_id :id ,
+          csrfmiddlewaretoken: "{{ csrf_token }}",
+      };      
+      $.ajax({
+        type: 'POST',
+        url: `/updatevote/`,
+        data: data,
+        success: function(response) {
+          var totalColElement = $('.votes');
+          totalColElement.text(response.updated_votes);
+        },
+        error: function(xhr, status, error) {
+          // Handle error
+          console.log(xhr.responseText);
+        }
+      });
+    });
+
+    $('.comment').click(function() {
+      var vote = $(this).val();
+      var comm_id = $(this).siblings('.vote-for-comment').data('id');
+      const data = {      
+        vote: vote,
+        comm_id: comm_id,
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/commentvote/',
+        data: data,
+        success: function(response) {
+          $('.update-' + comm_id).text(response.comment_votes);
+        },
+        error: function(xhr, status, error) {
+          console.error(error);
+        }
+      });
+    });
+
+  
+
+    $('.view-more-btn').click(function() {
+      $(this).siblings('.content-wrapper').toggle();
+    });
+
+    $('.reply-link-btn').click(function(){
+      $(this).siblings('#sub_comment_form').toggle();
+    })
+
+ 
+
+    function uploadFile() {
+    var form = $('#comment_form')[0];
+    var data = new FormData(form);
+
+      $.ajax({
+        url: '/commentview/',  // Replace with your Django view URL
+        type: 'POST',
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          // Handle successful upload
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
+          // Handle error
+          console.error(xhr.responseText);
+        }
+      });
+    }
+
+    function uploadFile(){
+      var form = $('#sub_comment_form')[0]
+      var data = new FormData(form)
+
+      $.ajax({
+        url: '/subcommentaddview/',  // Replace with your Django view URL
+        type: 'POST',
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          // Handle successful upload
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
+          // Handle error
+          console.error(xhr.responseText);
+        }
+      });
+
+    }
+});
+
+</script>
+
+</body>
+</html>
